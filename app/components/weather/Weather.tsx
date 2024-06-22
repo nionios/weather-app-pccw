@@ -4,7 +4,8 @@ import styles from "./Weather.module.css";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {useGetWeatherInfoQuery} from "@/lib/features/weather/weatherApiSlice";
-
+import {SimpleWeatherBox} from "@/app/components/weather/WeatherBox/SimpleWeatherBox";
+import {DetailedWeatherBox} from "@/app/components/weather/WeatherBox/DetailedWeatherBox";
 const options = [5, 10, 20, 30];
 
 export const Weather = () => {
@@ -12,6 +13,9 @@ export const Weather = () => {
     // Using a query hook automatically fetches data and returns query values
     const {data, isError, isLoading, isSuccess} =
         useGetWeatherInfoQuery("Athens");
+
+    // By default, diplay simple weather information.
+    const [inDetail, setInDetail] = useState(false);
 
     if (isError) {
         return (
@@ -27,12 +31,13 @@ export const Weather = () => {
                 <div className="h5 animate__animated animate__infinite animate__pulse">
                     Loading
                 </div>
-                <FontAwesomeIcon className={"fa-spin h4"} icon={faSpinner}></FontAwesomeIcon>
+                <FontAwesomeIcon className={"fa-spin h4"}
+                                 icon={faSpinner}></FontAwesomeIcon>
             </>
         );
     }
 
-    if (isSuccess) {
+    if (isSuccess && !inDetail) {
         return (
             <div className={styles.container}>
                 <h3>Select the Quantity of Quotes to Fetch:</h3>
@@ -49,16 +54,13 @@ export const Weather = () => {
                         </option>
                     ))}
                 </select>
-                {data.quotes.map(({author, quote, id}) => (
-                    <blockquote key={id}>
-                        &ldquo;{quote}&rdquo;
-                        <footer>
-                            <cite>{author}</cite>
-                        </footer>
-                    </blockquote>
-                ))}
+                <SimpleWeatherBox data={data}></SimpleWeatherBox>
             </div>
         );
+    } else if (isSuccess) {
+        return (
+            <DetailedWeatherBox data={data}></DetailedWeatherBox>
+        )
     }
 
     return null;
