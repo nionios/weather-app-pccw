@@ -28,9 +28,9 @@ export const Nav = () => {
         className={`${styles.link} ${
           pathname === "/quotes" ? styles.active : ""
         }`}
-        href="/quotes"
+        href="/weather"
       >
-        Quotes
+        Weather
       </Link>
     </nav>
   );

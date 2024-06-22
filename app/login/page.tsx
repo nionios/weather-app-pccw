@@ -1,4 +1,4 @@
-import LoginForm from "@/components/LoginForm/LoginForm";
+import LoginForm from "@/app/components/LoginForm/LoginForm";
 
 /**
  * This is the login page. This should only be accessed on hard navigation.
