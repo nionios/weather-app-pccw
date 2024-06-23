@@ -9,7 +9,7 @@ export const SimpleWeatherBox = (props: { data: WeatherApiResponse }) => {
                 initial={{y: +200, opacity: 0}}
                 animate={{y: 0, opacity: 1}}
                 transition={{ease: "easeIn", duration: 0.5}}
-                className="card shadow rounded">
+                className="card shadow rounded bg-blurred bg-opacity-70-white">
                 <div className="card-header">
                     <h3>Weather in {props.data.location.name}, {props.data.location.country}</h3>
                     <small>{props.data.location.region}</small>

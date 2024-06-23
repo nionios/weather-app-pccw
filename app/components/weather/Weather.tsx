@@ -53,7 +53,7 @@ export const Weather = () => {
             <>
                 <div className={styles.container}>
                     <h3>Select your location:</h3>
-                    <button className="rounded btn-info bg-info white my-2 shadow"
+                    <button className="rounded btn-3d bg-info white my-2 shadow"
                             onClick={showDetails}>
                         See Details
                     </button>
@@ -79,13 +79,13 @@ export const Weather = () => {
         dispatch(setCoords([data.location.lat, data.location.lon]));
 
         return (
-            <>
-                <button className="rounded btn-info bg-info white my-2 shadow"
+            <div className="container">
+                <button className="rounded btn-3d bg-info white my-2 shadow"
                         onClick={hideDetails}>
                     Hide Details
                 </button>
                 <DetailedWeatherBox data={data}></DetailedWeatherBox>
-            </>
+            </div>
         )
     }
 
