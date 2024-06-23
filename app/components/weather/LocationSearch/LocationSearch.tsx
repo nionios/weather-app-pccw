@@ -39,14 +39,14 @@ export const LocationSearch = () => {
         <div className="input-group w-50 w-md-100 mb-3 mt-5">
             <input
                 type="text"
-                className="form-control bg-blurred m-2 rounded"
+                className="form-control bg-blurred m-2 rounded shadow"
                 placeholder="Type your location here..."
                 aria-label="Location Query"
                 aria-describedby="button-addon2"
                 value={query}
                 onChange={event => setQuery(event.target.value)}
             />
-            <button className="btn btn-3d btn-outline-secondary bg-info rounded m-2 bg-blurred"
+            <button className="btn btn-3d btn-outline-secondary bg-info rounded m-2 bg-blurred shadow"
                     onClick={() => {
                         locationChange(debouncedQuery)
                     }}>

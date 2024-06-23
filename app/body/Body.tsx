@@ -2,7 +2,7 @@ import styles from "@/app/styles/layout.module.css";
 import {Nav} from "@/app/components/Nav";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faLinkedin} from "@fortawesome/free-brands-svg-icons";
-import {useAppSelector} from "@/lib/hooks";
+import {useAppSelector,useProgressiveImage} from "@/lib/hooks";
 import {selectCoords} from "@/lib/features/location/locationSlice";
 import {motion} from "framer-motion";
 
@@ -12,6 +12,7 @@ export const Body = ({children}: Props) => {
     const googleMapsAPIKey = "AIzaSyDkXsE1zfNo5PTeapsdHBCfpVyNVCn8cjU";
     const googleMapsURL = `https://maps.googleapis.com/maps/api/staticmap?key=${googleMapsAPIKey}&zoom=8&size=1000x1000&scale=2&center=${lonAndLat[0]},${lonAndLat[1]}&maptype=satellite`;
 
+    const loadedBackgroundImage = useProgressiveImage(googleMapsURL);
 
     return (
         <motion.body
@@ -20,7 +21,7 @@ export const Body = ({children}: Props) => {
             }}
             style={{
                 backgroundSize: "cover",
-                backgroundImage: `url(${googleMapsURL})`
+                backgroundImage: `url(${loadedBackgroundImage})`
             }}>
             <section className={styles.container}>
                 <main className={styles.main}>{children}</main>

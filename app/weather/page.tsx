@@ -6,8 +6,8 @@ export default function WeatherPage() {
     return (
         <div className="container-fluid vh-100 mt-4">
             <div className="d-flex justify-content-center align-items-center flex-column">
-                <div className="p-2 m-1 bg-blurred rounded border border-1 text-center">
-                    <h1>Weather page</h1>
+                <div className="p-2 m-1 bg-blurred rounded border border-1 text-center shadow">
+                    <h1>Super Weather</h1>
                     See what the weather is like anywhere in the world!
                 </div>
                 <Weather/>

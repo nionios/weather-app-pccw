@@ -6,6 +6,7 @@ import {StoreProvider} from "./StoreProvider";
 import 'bootstrap/dist/css/bootstrap.css';
 import "./styles/globals.css";
 import 'animate.css';
+import "@fontsource-variable/inter";
 import {Body} from "@/app/body/Body";
 
 
