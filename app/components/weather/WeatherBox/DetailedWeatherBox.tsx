@@ -4,6 +4,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEye, faWind} from "@fortawesome/free-solid-svg-icons";
 import styles from "../Weather.module.css";
 import {motion} from "framer-motion";
+import {FavoriteButton} from "@/app/components/Buttons/FavoriteButton/FavoriteButton";
 
 export const DetailedWeatherBox = (props: { data: WeatherApiResponse }) => {
     return (
@@ -14,7 +15,10 @@ export const DetailedWeatherBox = (props: { data: WeatherApiResponse }) => {
                 transition={{ease: "easeIn", duration: 0.5}}
                 className="card shadow rounded bg-blurred bg-opacity-70-white">
                 <div className="card-header bg-primary text-white">
-                    <h3>Weather in {props.data.location.name}, {props.data.location.country}</h3>
+                    <h3>
+                        <span className="me-2">Weather in {props.data.location.name}, {props.data.location.country}</span>
+                        <FavoriteButton color="white"/>
+                    </h3>
                     <small>{props.data.location.region}</small>
                 </div>
                 <div className="card-body">
