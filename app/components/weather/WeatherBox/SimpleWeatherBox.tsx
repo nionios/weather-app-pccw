@@ -4,14 +4,14 @@ import {motion} from "framer-motion"
 
 export const SimpleWeatherBox = (props: { data: WeatherApiResponse }) => {
     return (
-        <div className="container mt-4">
             <motion.div
                 initial={{y: +200, opacity: 0}}
                 animate={{y: 0, opacity: 1}}
                 transition={{ease: "easeIn", duration: 0.5}}
                 className="card shadow rounded bg-blurred bg-opacity-70-white">
                 <div className="card-header">
-                    <h3>Weather in {props.data.location.name}, {props.data.location.country}</h3>
+                    <h3>Weather in {props.data.location.name}</h3>
+                    <h5>{props.data.location.country}</h5>
                     <small>{props.data.location.region}</small>
                 </div>
                 <div className="card-body">
@@ -41,6 +41,5 @@ export const SimpleWeatherBox = (props: { data: WeatherApiResponse }) => {
                     </p>
                 </div>
             </motion.div>
-        </div>
     );
 }

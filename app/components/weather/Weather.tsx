@@ -66,7 +66,7 @@ export const Weather = () => {
         dispatch(setWeatherData(data))
         dispatch(setCoords([data.location.lat, data.location.lon]));
         return (
-            <div className="container">
+            <div className="container d-flex justify-items-center align-items-center flex-column">
                 <LocationSearch/>
                 <button className="rounded btn-3d bg-info white my-2 shadow"
                         onClick={showDetails}>
@@ -80,7 +80,7 @@ export const Weather = () => {
         dispatch(setWeatherData(data))
         dispatch(setCoords([data.location.lat, data.location.lon]));
         return (
-            <div className="container">
+            <div className="container d-flex justify-items-center align-items-center flex-column">
                 <LocationSearch/>
                 <button className="rounded btn-3d bg-info white my-2 shadow"
                         onClick={hideDetails}>
@@ -91,7 +91,7 @@ export const Weather = () => {
         )
     } else {
         return (
-            <div className="container">
+            <div className="container d-flex justify-items-center align-items-center flex-column">
                 <LocationSearch/>
             </div>
         )
