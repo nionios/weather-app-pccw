@@ -40,9 +40,8 @@ export const Weather = () => {
         return (
             <>
                 <LocationSearch/>
-                {JSON.stringify(location)}
                 <div className="alert alert-danger h5 animate__animated animate__jackInTheBox">
-                    There was an error with your query
+                    There was an error with your query!
                 </div>
             </>
         );

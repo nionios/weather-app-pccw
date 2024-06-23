@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import "./styles/globals.css";
 import 'animate.css';
 import "@fontsource-variable/inter";
+import "@fontsource-variable/orbitron";
 import {Body} from "@/app/body/Body";
 
 

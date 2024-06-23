@@ -10,15 +10,13 @@ export const Body = ({children}: Props) => {
     let lonAndLat = useAppSelector(selectCoords);
 
     const googleMapsAPIKey = "AIzaSyDkXsE1zfNo5PTeapsdHBCfpVyNVCn8cjU";
-    const googleMapsURL = `https://maps.googleapis.com/maps/api/staticmap?key=${googleMapsAPIKey}&zoom=8&size=1000x1000&scale=2&center=${lonAndLat[0]},${lonAndLat[1]}&maptype=satellite`;
+    const googleMapsURL = `https://maps.googleapis.com/maps/api/staticmap?key=${googleMapsAPIKey}&zoom=9&size=1000x1000&scale=2&center=${lonAndLat[0]},${lonAndLat[1]}&maptype=satellite`;
 
     const loadedBackgroundImage = useProgressiveImage(googleMapsURL);
 
     return (
         <motion.body
-            animate={{
-                backgroundPosition: [5, -5]
-            }}
+            transition={{ duration: 5, repeat: Infinity }}
             style={{
                 backgroundSize: "cover",
                 backgroundImage: `url(${loadedBackgroundImage})`
