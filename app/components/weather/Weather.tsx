@@ -6,16 +6,24 @@ import {faSpinner} from "@fortawesome/free-solid-svg-icons";
 import {useGetWeatherInfoQuery} from "@/lib/features/weather/weatherApiSlice";
 import {SimpleWeatherBox} from "@/app/components/weather/WeatherBox/SimpleWeatherBox";
 import {DetailedWeatherBox} from "@/app/components/weather/WeatherBox/DetailedWeatherBox";
-const options = [5, 10, 20, 30];
+import {useAppDispatch} from "@/lib/hooks";
+import {setCoords} from "@/lib/features/location/locationSlice";
+
+const locations = ["Athens", "Lisbon", "Kyoto"];
 
 export const Weather = () => {
-    const [numberOfQuotes, setNumberOfQuotes] = useState(10);
+    const [location, setLocation] = useState("Athens");
     // Using a query hook automatically fetches data and returns query values
     const {data, isError, isLoading, isSuccess} =
-        useGetWeatherInfoQuery("Athens");
+        useGetWeatherInfoQuery(location);
+
+    const dispatch = useAppDispatch();
 
     // By default, diplay simple weather information.
     const [inDetail, setInDetail] = useState(false);
+    // Set the functions for the hide/show details buttons
+    const showDetails = () => setInDetail(true);
+    const hideDetails = () => setInDetail(false);
 
     if (isError) {
         return (
@@ -38,28 +46,46 @@ export const Weather = () => {
     }
 
     if (isSuccess && !inDetail) {
+        // Set program global state
+        dispatch(setCoords([data.location.lat, data.location.lon]));
+
         return (
-            <div className={styles.container}>
-                <h3>Select the Quantity of Quotes to Fetch:</h3>
-                <select
-                    className={styles.select}
-                    value={numberOfQuotes}
-                    onChange={(e) => {
-                        setNumberOfQuotes(Number(e.target.value));
-                    }}>
-                    {options.map((option) => (
-                        <option key={option}
-                                value={option}>
-                            {option}
-                        </option>
-                    ))}
-                </select>
-                <SimpleWeatherBox data={data}></SimpleWeatherBox>
-            </div>
+            <>
+                <div className={styles.container}>
+                    <h3>Select your location:</h3>
+                    <button className="rounded btn-info bg-info white my-2 shadow"
+                            onClick={showDetails}>
+                        See Details
+                    </button>
+                    <select
+                        className={styles.select}
+                        value={location}
+                        onChange={(e) => {
+                            setLocation(e.target.value);
+                        }}>
+                        {locations.map((option) => (
+                            <option key={option}
+                                    value={option}>
+                                {option}
+                            </option>
+                        ))}
+                    </select>
+                    <SimpleWeatherBox data={data}></SimpleWeatherBox>
+                </div>
+            </>
         );
     } else if (isSuccess) {
+        // Set program global state
+        dispatch(setCoords([data.location.lat, data.location.lon]));
+
         return (
-            <DetailedWeatherBox data={data}></DetailedWeatherBox>
+            <>
+                <button className="rounded btn-info bg-info white my-2 shadow"
+                        onClick={hideDetails}>
+                    Hide Details
+                </button>
+                <DetailedWeatherBox data={data}></DetailedWeatherBox>
+            </>
         )
     }
 

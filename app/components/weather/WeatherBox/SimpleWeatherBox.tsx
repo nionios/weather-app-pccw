@@ -1,18 +1,29 @@
 "use client";
 import {WeatherApiResponse} from "@/types";
+import {motion} from "framer-motion"
 
-export const SimpleWeatherBox = (props: {data: WeatherApiResponse }) => {
+export const SimpleWeatherBox = (props: { data: WeatherApiResponse }) => {
     return (
         <div className="container mt-4">
-            <div className="card">
+            <motion.div
+                initial={{y: +200, opacity: 0}}
+                animate={{y: 0, opacity: 1}}
+                transition={{ease: "easeIn", duration: 0.5}}
+                className="card shadow rounded">
                 <div className="card-header">
                     <h3>Weather in {props.data.location.name}, {props.data.location.country}</h3>
                     <small>{props.data.location.region}</small>
                 </div>
                 <div className="card-body">
                     <h5 className="card-title">{props.data.current.condition.text}</h5>
-                    <img src={props.data.current.condition.icon}
-                         alt={props.data.current.condition.text}/>
+                    <motion.img
+                        animate={{
+                            scale: [1, 1.5, 1],
+                            rotateY: [0, 180, 0],
+                            delay: 0.5,
+                        }}
+                        src={props.data.current.condition.icon}
+                        alt={props.data.current.condition.text}/>
                     <p className="card-text">
                         <strong>Temperature:</strong> {props.data.current.temp_c}°C / {props.data.current.temp_f}°F<br/>
                         <strong>Feels Like:</strong> {props.data.current.feelslike_c}°C
@@ -29,7 +40,7 @@ export const SimpleWeatherBox = (props: {data: WeatherApiResponse }) => {
                         <strong>Last Updated:</strong> {props.data.current.last_updated}
                     </p>
                 </div>
-            </div>
+            </motion.div>
         </div>
     );
 }

@@ -14,3 +14,8 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.btn-3d {
+  border-style: outset;
+  box-shadow: 2px 2px 1px grey;
+}
