@@ -1,18 +1,22 @@
 import {createAppSlice} from "@/lib/createAppSlice";
-import type {AppThunk} from "@/lib/store";
 import type {PayloadAction} from "@reduxjs/toolkit";
 import {fetchLocation} from "./locationAPI";
+import {WeatherApiResponse} from "@/types";
 
 export interface LocationSliceState {
     lon: number,
     lat: number,
-    status: "idle" | "loading" | "failed";
+    name: string,
+    status: "idle" | "loading" | "failed" | "success";
+    weatherData: WeatherApiResponse;
 }
 
 const initialState: LocationSliceState = {
     lon: 0,
     lat: 0,
+    name: "Athens",
     status: "idle",
+    weatherData: null,
 };
 
 // If you are not using async thunks you can use the standalone `createSlice`.
@@ -27,6 +31,41 @@ export const locationSlice = createAppSlice({
             (state, action: PayloadAction<Array<number>>) => {
                 state.lon = action.payload[0];
                 state.lat = action.payload[1];
+            },
+        ),
+        setErrored: create.reducer(
+            (state, action: PayloadAction<boolean>) => {
+                if (action) {
+                    state.status = 'failed';
+                }
+            },
+        ),
+        setLoading: create.reducer(
+            (state, action: PayloadAction<boolean>) => {
+                if (action) {
+                    state.status = 'loading';
+                }
+            },
+        ),
+        setSuccess: create.reducer(
+            (state, action: PayloadAction<boolean>) => {
+                if (action) {
+                    state.status = 'success';
+                }
+            },
+        ),
+        setLocationName:  create.reducer(
+            (state, action: PayloadAction<string>) => {
+                if (action) {
+                    state.name = action.payload;
+                }
+            },
+        ),
+        setWeatherData:  create.reducer(
+            (state, action: PayloadAction<WeatherApiResponse>) => {
+                if (action) {
+                    state.weatherData = action.payload;
+                }
             },
         ),
         // The function below is called a thunk and allows us to perform async logic. It
@@ -60,12 +99,17 @@ export const locationSlice = createAppSlice({
         selectCoords: (location) => {
             return [location.lon, location.lat]
         },
+        selectStatus: (location) => location.status,
+        selectLocation: (location) => location.name,
+        selectWeatherData: (location) => location.weatherData,
     },
 });
 
 // Action creators are generated for each case reducer function.
-export const {setCoords} = locationSlice.actions;
+export const {setCoords, setErrored, setLoading, setSuccess, setLocationName, setWeatherData} =
+    locationSlice.actions;
 
 // Selectors returned by `slice.selectors` take the root state as their first argument.
-export const {selectCoords} = locationSlice.selectors;
+export const {selectCoords, selectStatus, selectLocation, selectWeatherData} =
+    locationSlice.selectors;
 
