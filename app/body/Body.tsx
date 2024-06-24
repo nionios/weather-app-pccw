@@ -10,7 +10,7 @@ export const Body = ({children}: Props) => {
     let lonAndLat = useAppSelector(selectCoords);
 
     const googleMapsAPIKey = process.env.googleMapsApiKey;
-    const googleMapsURL = `https://maps.googleapis.com/maps/api/staticmap?key=${googleMapsAPIKey}&zoom=8&size=1000x1000&scale=2&center=${lonAndLat[0]},${lonAndLat[1]}&maptype=satellite`;
+    const googleMapsURL = `https://maps.googleapis.com/maps/api/staticmap?key=${googleMapsAPIKey}&style=feature:administrative.country|color:0xffffff&zoom=8&size=1000x1000&scale=2&center=${lonAndLat[0]},${lonAndLat[1]}&maptype=satellite`;
 
     const loadedBackgroundImage = useProgressiveImage(googleMapsURL);
 

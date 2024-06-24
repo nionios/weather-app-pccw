@@ -1,28 +1,3 @@
-/**
- * User information object that contains all the personal info of user returned from endpoint.
- */
-export type UserInfo = {
-    userLastName: string | undefined,
-    userEmail: string | undefined,
-    userFirstName: string | undefined,
-}
-
-/**
- * The type of the JobBoxes
- */
-export type JobBoxType = {
-    props: {
-        id: number;
-        companyName: string;
-        address: string;
-        createdAt: number;
-        validUntil: number;
-        title: string;
-        description: string;
-    }
-}
-
-
 // Setup the type for the API response.
 interface Location {
     name: string;
@@ -41,7 +16,7 @@ interface Condition {
     code: number;
 }
 
-interface Current {
+interface Data {
     last_updated_epoch: number;
     last_updated: string;
     temp_c: number;
@@ -73,9 +48,13 @@ interface Current {
     gust_kph: number;
 }
 
-interface WeatherData<TLocation, TCurrent> {
+interface WeatherForecast<TLocation, TData> {
     location: TLocation;
-    current: TCurrent;
+    current: TData;
+    forecast: TData;
 }
 
-export type WeatherApiResponse = WeatherData<Location, Current>;
+
+export type LocationData = Location;
+export type WeatherData = Data;
+export type WeatherApiResponse = WeatherForecast<Location, Data>;

@@ -4,7 +4,7 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/query/react";
 // Define a service using a base URL and expected endpoints
 export const weatherApiSlice = createApi({
     // Inject the API for env variable to the process endpoint
-    baseQuery: fetchBaseQuery({baseUrl: `http://api.weatherapi.com/v1/current.json`}),
+    baseQuery: fetchBaseQuery({baseUrl: `http://api.weatherapi.com/v1/forecast.json`}),
     reducerPath: "weatherApi",
     // Tag types are used for caching and invalidation.
     tagTypes: ["Weather"],
@@ -13,7 +13,7 @@ export const weatherApiSlice = createApi({
         // and the expected query argument. If there is no argument, use `void`
         // for the argument type instead.
         getWeatherInfo: build.query<WeatherApiResponse, number>({
-            query: (location = "Athens") => `?key=${process.env.weatherApiKey}&q=${location}`,
+            query: (location = "Athens") => `?key=${process.env.weatherApiKey}&days=5&q=${location}`,
             // `providesTags` determines which 'tag' is attached to the
             // cached data returned by the query.
             providesTags: (result, error, id) => [{type: "Weather", id}],
