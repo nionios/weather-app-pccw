@@ -56,8 +56,8 @@ export const SimpleWeatherBox = (props: { weatherData: WeatherData, locationData
                 <div className="card-text">
                     <div>
                         {/*A temp that would be 100% is here 50C (or -50)*/}
-                        <strong>Temperature:</strong> {2 * props.weatherData.temp_c}°C / {props.weatherData.temp_f}°F
-                        <ProgressBar bgColor={colorDeterminator(props.weatherData.temp_c)}
+                        <strong>Temperature:</strong> {props.weatherData.temp_c}°C / {props.weatherData.temp_f}°F
+                        <ProgressBar bgColor={colorDeterminator(2 * props.weatherData.temp_c)}
                                      width={2 * props.weatherData.temp_c}
                                      displayText={`${props.weatherData.temp_c}°C`}/>
                     </div>
