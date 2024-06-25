@@ -1,29 +1,32 @@
-# Redux Toolkit TypeScript Example
+# Console Connect Weather Application Technical Assesment
 
-This example shows how to integrate Next.js with [Redux Toolkit](https://redux-toolkit.js.org).
+This application is part of a technical assignment for a Senior Frontend Developer in Console Connect.
 
-**Redux Toolkit**(also known as "RTK" for short) provides a standardized way to write Redux logic. It includes utilities that help simplify many common use cases, including [store setup](https://redux-toolkit.js.org/api/configureStore), [creating reducers and writing immutable update logic](https://redux-toolkit.js.org/api/createreducer), and even [creating entire "slices" of state at once](https://redux-toolkit.js.org/api/createslice). This example showcases each of these features in conjunction with Next.js.
+## Tools Utilized
 
-## Deploy Your Own
+This web app is built upon TypeScript, Next.js and Redux. 
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
+## APIs Utilized
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-redux&project-name=with-redux&repository-name=with-redux)
+APIs what were used are [WeatherAPI](https://www.weatherapi.com/) as per the assesment description, as well as
+[Google Maps Static API](https://developers.google.com/maps/documentation/maps-static/overview) for the website's background.
+API keys would be further obscured in a production environment.
 
-## How to Use
+For example, the Google API key would not be visible in the front-end,
+instead the background image would be fetched in the backend and then rendered in the front.
+In this current implementation, the image is fetched with a simple GET request.
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
 
-```bash
-npx create-next-app --example with-redux with-redux-app
-```
+## Requirements of the Assignment
 
-```bash
-yarn create next-app --example with-redux with-redux-app
-```
+All the mandatory requirements and features have been implemented. The extra features (search history, clear history and 
+favorite cities) were not implemented due to time constraints, however their implementation would be relatively simple using
+[localStorage](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage).
 
-```bash
-pnpm create next-app --example with-redux with-redux-app
-```
+## Building and Running the project
 
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+The project was built with Node v22.3.0 (and npm 10.8.1). A simple ```npm install``` followed by ```npm run dev``` would
+be enought to run the project on port 3000 on localhost.
+
+For production, buiding with ```npm run build``` and then starting the process with ```npm run start``` with a tool like
+pm2 would be favorable, besides editing relevant nginx files (or similar tools), setting up domains, SSL certs etc.
